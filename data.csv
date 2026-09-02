@@ -1,0 +1,201 @@
+message,label
+"Congratulations! You won a free vacation. Claim it today.",spam
+"URGENT: Claim your cash reward before midnight.",spam
+"You have been selected for a $500 gift card.",spam
+"WINNER! Click now to collect your prize.",spam
+"Limited-time offer: free smartphone for the first 100 replies.",spam
+"Free entry in our weekly prize draw. Reply YES.",spam
+"Act now to receive your exclusive reward.",spam
+"Your loan has been approved. Send details to release funds.",spam
+"Earn money from home with no experience required.",spam
+"You are pre-approved for a low-interest loan. Apply now.",spam
+"Claim your bonus cash by clicking the link.",spam
+"Final notice: your prize expires today.",spam
+"Get rich fast with this simple investment secret.",spam
+"A mysterious relative left you an inheritance. Contact us.",spam
+"Your account needs verification. Open this link immediately.",spam
+"Important security alert: confirm your password here.",spam
+"We noticed unusual activity. Verify your account to avoid closure.",spam
+"Your package is waiting. Pay a small fee to schedule delivery.",spam
+"You have an unpaid toll. Settle it now to avoid penalties.",spam
+"IRS refund available. Submit your information today.",spam
+"Congratulations, you qualify for debt relief.",spam
+"Exclusive deal just for you: 90% off today only.",spam
+"Click here for your free trial, no credit card needed.",spam
+"Reply STOP to unsubscribe from amazing offers.",spam
+"You have won a luxury cruise for two.",spam
+"Urgent response required to keep your account active.",spam
+"This is your last chance to claim a reward.",spam
+"Receive a free tablet when you complete this survey.",spam
+"Make $500 a day using your phone.",spam
+"Secret shopper opportunity pays instantly.",spam
+"Hot singles in your area want to meet you now.",spam
+"Your payment failed. Update your card at this link.",spam
+"Confirm your bank details to receive a transfer.",spam
+"You were chosen for a special government grant.",spam
+"Free gift waiting for you. Tap to reveal it.",spam
+"Claim a coupon worth $100 before it disappears.",spam
+"Get a guaranteed credit card with no checks.",spam
+"We need your response about an issue with your account.",spam
+"You have a message from support. Sign in to read it.",spam
+"Unlock premium movies free for 30 days.",spam
+"Your number was picked in today's lucky draw.",spam
+"Win big cash prizes every week. Join now.",spam
+"Congratulations! Your email was selected for a reward.",spam
+"Urgent: update your billing information now.",spam
+"Low rates available today. Apply before midnight.",spam
+"Claim your free coffee card by entering your details.",spam
+"Investment alert: double your money in one month.",spam
+"You have been approved for immediate cash assistance.",spam
+"Only a few spots remain in this exclusive money program.",spam
+"Free crypto giveaway! Connect your wallet to claim.",spam
+"You are eligible for a refund. Complete the form now.",spam
+"Your mailbox is full. Upgrade storage through this link.",spam
+"Notice: we could not deliver your parcel. Reschedule here.",spam
+"Get paid to test products from major brands.",spam
+"Important: your subscription will renew unless you cancel here.",spam
+"You won a voucher. Enter your card number to activate it.",spam
+"Cheap flights available now. Pay today to reserve.",spam
+"Claim your tax rebate before the deadline.",spam
+"You have a pending payment. Log in to receive it.",spam
+"Flash sale: luxury watches for $9.99.",spam
+"Reply now and receive a surprise gift.",spam
+"Your profile has been selected for a private offer.",spam
+"We are attempting to contact you about a financial matter.",spam
+"Do not ignore this message; action is required immediately.",spam
+"You've been chosen to receive free concert tickets.",spam
+"Click to see who viewed your profile.",spam
+"Your device may be infected. Install this security update.",spam
+"Guaranteed acceptance for a personal loan.",spam
+"Get unlimited streaming access for free.",spam
+"Congratulations on being our millionth visitor.",spam
+"Your reward points are about to expire. Redeem now.",spam
+"Exclusive invitation: claim your membership today.",spam
+"A payment is waiting for you. Verify your identity.",spam
+"Earn a bonus for every friend you invite.",spam
+"This offer is not available to the public.",spam
+"Your credit score qualifies you for a special rate.",spam
+"Win a new car by completing a short survey.",spam
+"We need to confirm your details before sending your prize.",spam
+"Free antivirus download available now.",spam
+"Get instant access to secret discounts.",spam
+"You have been randomly selected for a cash reward.",spam
+"Urgent account notice. Click to prevent suspension.",spam
+"This investment has guaranteed returns.",spam
+"Claim your complimentary meal voucher.",spam
+"You are one click away from a free vacation.",spam
+"Special deal: buy one get five free today.",spam
+"Your sweepstakes entry is a winner.",spam
+"Verify now or lose access to your account.",spam
+"Get a $1000 grant with no repayment.",spam
+"Open this attachment to see your reward.",spam
+"We found money owed to you. Submit a claim.",spam
+"Immediate action needed regarding your bank account.",spam
+"Your shipping address needs confirmation. Update it here.",spam
+"Claim a free sample while supplies last.",spam
+"You qualify for exclusive student loan forgiveness.",spam
+"Reply YES for a chance to win cash.",spam
+"Download this app to receive your prize.",spam
+"You have an unclaimed balance. Sign in now.",spam
+"Last reminder: redeem your bonus before it expires.",spam
+"Exclusive reward waiting: confirm your information to receive it.",spam
+"Can you pick me up after class?",not_spam
+"Don't forget we're meeting at 6 tonight.",not_spam
+"Click the Google Drive link for the lecture notes.",not_spam
+"Free pizza at the CS and AI meeting tonight.",not_spam
+"Congratulations on winning the hackathon!",not_spam
+"There are limited seats left for tomorrow's workshop.",not_spam
+"Please claim your jacket from the lost and found.",not_spam
+"Urgent: please send me the homework when you can.",not_spam
+"Your package was delivered to the front desk.",not_spam
+"Can you call me when you get home?",not_spam
+"I sent you the calendar invite for Friday.",not_spam
+"Thanks for your help with the presentation.",not_spam
+"The professor posted the final project instructions.",not_spam
+"Reminder: your dentist appointment is at 3 PM.",not_spam
+"Our club is offering free tutoring this week.",not_spam
+"The library account notice says my books are due soon.",not_spam
+"Please update your contact information in the school portal.",not_spam
+"Your order from the campus bookstore is ready for pickup.",not_spam
+"We need to reschedule our meeting for tomorrow.",not_spam
+"Mom says dinner will be ready at seven.",not_spam
+"I found a good deal on train tickets for the trip.",not_spam
+"The team selected you to present our project.",not_spam
+"You earned a reward point for attending the workshop.",not_spam
+"Please bring cash for the shared lunch.",not_spam
+"The bank app says my transfer was completed.",not_spam
+"Your payment for the club dues was received.",not_spam
+"The security team is testing the new login process today.",not_spam
+"Check your email for the scholarship application link.",not_spam
+"The delivery driver left your groceries by the door.",not_spam
+"I have a free hour after my lab if you want to study.",not_spam
+"The concert tickets are on sale through the university site.",not_spam
+"You were approved to join the volunteer program.",not_spam
+"My account password needs to be changed this month.",not_spam
+"The streaming subscription renews next week.",not_spam
+"Could you send the survey results before noon?",not_spam
+"You can download the assignment template from Canvas.",not_spam
+"The class group chat has the link to the slides.",not_spam
+"We have a special offer on coffee for club members.",not_spam
+"I won a small prize at the department raffle.",not_spam
+"Please reply when you have a minute.",not_spam
+"Your application was selected for the next interview round.",not_spam
+"The school is giving out free laptops to qualifying students.",not_spam
+"There is an urgent maintenance issue in the dorm.",not_spam
+"The gym has a limited-time student membership deal.",not_spam
+"I left my phone charger in the classroom.",not_spam
+"Can we move our call to 4:30?",not_spam
+"The meeting room changed to Building B.",not_spam
+"Please confirm that you received my attachment.",not_spam
+"Your refund from the bookstore has been processed.",not_spam
+"The package contains the replacement keyboard you ordered.",not_spam
+"The volunteer coordinator needs your shirt size.",not_spam
+"Good luck on your exam tomorrow!",not_spam
+"The instructor added extra office hours this week.",not_spam
+"We are collecting donations for the food drive.",not_spam
+"The club treasurer says the budget was approved.",not_spam
+"My flight arrives at 8:15 on Saturday.",not_spam
+"The group project is due at midnight Friday.",not_spam
+"Please use the secure portal to upload your document.",not_spam
+"The bookstore has a coupon for 10 percent off textbooks.",not_spam
+"Your parking permit expires at the end of the month.",not_spam
+"I am trying to reach you about our study group.",not_spam
+"The office sent a reminder about health insurance enrollment.",not_spam
+"We need your response by Wednesday for the field trip.",not_spam
+"Click here to register for the free coding workshop.",not_spam
+"Your reward is a thank-you card from the team.",not_spam
+"The lab computer needs a security update from IT.",not_spam
+"Can you bring your notes to our meeting?",not_spam
+"There is a cash prize for the science fair winner.",not_spam
+"The store offered a deal on the supplies we need.",not_spam
+"I selected a restaurant for dinner tonight.",not_spam
+"Please claim your seat before the movie starts.",not_spam
+"The final notice for tuition is in the student portal.",not_spam
+"Your account is active and everything looks normal.",not_spam
+"The professor will post the quiz scores tomorrow.",not_spam
+"We found your missing water bottle in the gym.",not_spam
+"The club has an exclusive event for new members.",not_spam
+"Please pay the utility bill before Friday.",not_spam
+"You have been chosen as the discussion leader.",not_spam
+"The student government grant application opens Monday.",not_spam
+"I got a new phone number; save it when you can.",not_spam
+"The package pickup desk closes at five.",not_spam
+"Your reserved book is available at the library.",not_spam
+"We are offering a free lunch during orientation.",not_spam
+"The professor says today's class is online.",not_spam
+"The reward for finishing the challenge is extra credit.",not_spam
+"A few seats remain for the campus tour.",not_spam
+"Please review the attached meeting agenda.",not_spam
+"The finance office confirmed my scholarship payment.",not_spam
+"Can you help me move this weekend?",not_spam
+"The student store has a sale on notebooks.",not_spam
+"Your request to borrow the camera was approved.",not_spam
+"Don't forget to submit your timesheet today.",not_spam
+"The workshop starts in ten minutes.",not_spam
+"I will send the photos after dinner.",not_spam
+"The campus shuttle is running late.",not_spam
+"Thank you for helping with the event.",not_spam
+"The deadline for the essay was extended.",not_spam
+"Let's meet outside the library at noon.",not_spam
+"I saved you a seat in the lecture hall.",not_spam
+"Your library hold is ready to collect.",not_spam
