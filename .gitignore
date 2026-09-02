@@ -1,0 +1,27 @@
+# Python bytecode and tooling caches
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Virtual environments and local environment files
+.venv/
+venv/
+env/
+.env
+.env.*
+
+# Jupyter/Colab temporary files and facilitator-only notebook
+.ipynb_checkpoints/
+train_spam_classifier_solution.ipynb
+
+# Attendee-generated trained model artifact
+model/spam_classifier.joblib
+
+# Editor and operating-system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
