@@ -9,21 +9,79 @@
   "test_examples": 1034,
   "model": "TfidfVectorizer(word unigrams and bigrams) + MultinomialNB",
   "alpha": 0.1,
-  "spam_threshold": 0.35,
+  "spam_threshold": 0.3,
+  "threshold_selection": {
+    "method": "5-fold out-of-fold predictions on the training split only",
+    "objective": "maximize macro-F1, then spam recall, then prefer lower threshold",
+    "candidates": [
+      {
+        "threshold": 0.2,
+        "macro_f1": 0.9633764095704926,
+        "spam_precision": 0.967280163599182,
+        "spam_recall": 0.9061302681992337
+      },
+      {
+        "threshold": 0.25,
+        "macro_f1": 0.9643208595700096,
+        "spam_precision": 0.9751552795031055,
+        "spam_recall": 0.9022988505747126
+      },
+      {
+        "threshold": 0.3,
+        "macro_f1": 0.9658144672182649,
+        "spam_precision": 0.9852941176470589,
+        "spam_recall": 0.8984674329501916
+      },
+      {
+        "threshold": 0.35,
+        "macro_f1": 0.9646137478150159,
+        "spam_precision": 0.9852320675105485,
+        "spam_recall": 0.8946360153256705
+      },
+      {
+        "threshold": 0.4,
+        "macro_f1": 0.9615263850716624,
+        "spam_precision": 0.987152034261242,
+        "spam_recall": 0.8831417624521073
+      },
+      {
+        "threshold": 0.45,
+        "macro_f1": 0.9607806708042376,
+        "spam_precision": 0.9913419913419913,
+        "spam_recall": 0.8773946360153256
+      },
+      {
+        "threshold": 0.5,
+        "macro_f1": 0.9588694920865259,
+        "spam_precision": 0.9934354485776805,
+        "spam_recall": 0.8697318007662835
+      },
+      {
+        "threshold": 0.55,
+        "macro_f1": 0.9563979543417516,
+        "spam_precision": 0.9933774834437086,
+        "spam_recall": 0.8620689655172413
+      },
+      {
+        "threshold": 0.6,
+        "macro_f1": 0.9551555137964454,
+        "spam_precision": 0.9933481152993349,
+        "spam_recall": 0.8582375478927203
+      }
+    ]
+  },
   "holdout": {
-    "accuracy": 0.9854932301740812,
-    "macro_f1": 0.9662234998203378,
-    "spam_precision": 0.9754098360655737,
+    "accuracy": 0.9835589941972921,
+    "macro_f1": 0.9619783048354478,
+    "spam_precision": 0.9596774193548387,
     "spam_recall": 0.9083969465648855,
     "pr_auc": 0.974863341475704,
     "roc_auc": 0.990286830159012
   },
   "five_fold_cv": {
-    "accuracy_mean": 0.9852975596420634,
-    "accuracy_std": 0.0028270882428142754,
-    "macro_f1_mean": 0.9650053420167477,
-    "macro_f1_std": 0.0071413092587297505,
-    "spam_f1_mean": 0.9383575382678666,
-    "spam_f1_std": 0.012693603958053955
+    "evaluation": "fixed threshold selected on training split",
+    "accuracy": 0.9852969626620236,
+    "macro_f1": 0.9656553258007323,
+    "spam_f1": 0.9396825396825397
   }
 }

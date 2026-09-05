@@ -28,6 +28,7 @@ def test_model_loads():
     assert model is not None
     assert model is not app.LOAD_ERROR
     assert hasattr(model, "predict_proba")
+    assert getattr(model, "spam_threshold_", app.SPAM_THRESHOLD) == pytest.approx(0.30)
 
 
 def test_empty_input_is_handled():

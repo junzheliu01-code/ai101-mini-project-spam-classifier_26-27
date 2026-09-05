@@ -12,23 +12,77 @@ from sklearn.metrics import (
     accuracy_score,
     average_precision_score,
     f1_score,
-    make_scorer,
     precision_score,
     recall_score,
     roc_auc_score,
 )
-from sklearn.model_selection import StratifiedKFold, cross_validate, train_test_split
+from sklearn.model_selection import (
+    StratifiedKFold,
+    cross_val_predict,
+    train_test_split,
+)
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 MODEL_PATH = PROJECT_ROOT / "model" / "spam_classifier.joblib"
 REPORT_PATH = PROJECT_ROOT / "reports" / "uci_external_model.json"
-SPAM_THRESHOLD = 0.35
+THRESHOLD_CANDIDATES = (0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6)
 
 
 def get_spam_probability(model, messages):
     probabilities = model.predict_proba(messages)
     spam_index = list(model.classes_).index("spam")
     return probabilities[:, spam_index]
+
+
+def threshold_predictions(probabilities, threshold):
+    return [
+        "spam" if probability >= threshold else "not_spam"
+        for probability in probabilities
+    ]
+
+
+def select_threshold(model, X_train, y_train, cv):
+    """Select a threshold using only out-of-fold predictions from training data."""
+    oof_probabilities = cross_val_predict(
+        model,
+        X_train,
+        y_train,
+        cv=cv,
+        method="predict_proba",
+        n_jobs=-1,
+    )
+    spam_index = list(model.classes_).index("spam")
+    spam_probabilities = oof_probabilities[:, spam_index]
+
+    candidates = []
+    for threshold in THRESHOLD_CANDIDATES:
+        predictions = threshold_predictions(spam_probabilities, threshold)
+        candidates.append(
+            {
+                "threshold": threshold,
+                "macro_f1": f1_score(y_train, predictions, average="macro"),
+                "spam_precision": precision_score(
+                    y_train,
+                    predictions,
+                    pos_label="spam",
+                ),
+                "spam_recall": recall_score(
+                    y_train,
+                    predictions,
+                    pos_label="spam",
+                ),
+            }
+        )
+
+    selected = max(
+        candidates,
+        key=lambda result: (
+            result["macro_f1"],
+            result["spam_recall"],
+            -result["threshold"],
+        ),
+    )
+    return selected["threshold"], candidates
 
 
 def main() -> None:
@@ -45,26 +99,27 @@ def main() -> None:
 
     model = build_models()["multinomial_nb"]
     model.fit(X_train, y_train)
+    cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
+    spam_threshold, threshold_candidates = select_threshold(
+        model,
+        X_train,
+        y_train,
+        cv,
+    )
     probabilities = get_spam_probability(model, X_test)
-    predictions = [
-        "spam" if probability >= SPAM_THRESHOLD else "not_spam"
-        for probability in probabilities
-    ]
+    predictions = threshold_predictions(probabilities, spam_threshold)
     binary_labels = (y_test == "spam").astype(int)
 
-    cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
-    cv_results = cross_validate(
+    cv_probabilities = cross_val_predict(
         model,
         X,
         y,
         cv=cv,
-        scoring={
-            "accuracy": "accuracy",
-            "macro_f1": "f1_macro",
-            "spam_f1": make_scorer(f1_score, pos_label="spam"),
-        },
+        method="predict_proba",
         n_jobs=-1,
     )
+    cv_spam_probabilities = cv_probabilities[:, list(model.classes_).index("spam")]
+    cv_predictions = threshold_predictions(cv_spam_probabilities, spam_threshold)
 
     metrics = {
         "dataset": "UCI SMS Spam Collection",
@@ -74,7 +129,14 @@ def main() -> None:
         "test_examples": len(X_test),
         "model": "TfidfVectorizer(word unigrams and bigrams) + MultinomialNB",
         "alpha": 0.1,
-        "spam_threshold": SPAM_THRESHOLD,
+        "spam_threshold": spam_threshold,
+        "threshold_selection": {
+            "method": "5-fold out-of-fold predictions on the training split only",
+            "objective": (
+                "maximize macro-F1, then spam recall, then prefer lower threshold"
+            ),
+            "candidates": threshold_candidates,
+        },
         "holdout": {
             "accuracy": accuracy_score(y_test, predictions),
             "macro_f1": f1_score(y_test, predictions, average="macro"),
@@ -88,17 +150,16 @@ def main() -> None:
             "roc_auc": roc_auc_score(binary_labels, probabilities),
         },
         "five_fold_cv": {
-            "accuracy_mean": cv_results["test_accuracy"].mean(),
-            "accuracy_std": cv_results["test_accuracy"].std(),
-            "macro_f1_mean": cv_results["test_macro_f1"].mean(),
-            "macro_f1_std": cv_results["test_macro_f1"].std(),
-            "spam_f1_mean": cv_results["test_spam_f1"].mean(),
-            "spam_f1_std": cv_results["test_spam_f1"].std(),
+            "evaluation": "fixed threshold selected on training split",
+            "accuracy": accuracy_score(y, cv_predictions),
+            "macro_f1": f1_score(y, cv_predictions, average="macro"),
+            "spam_f1": f1_score(y, cv_predictions, pos_label="spam"),
         },
     }
 
     final_model = clone(model)
     final_model.fit(X, y)
+    final_model.spam_threshold_ = spam_threshold
     MODEL_PATH.parent.mkdir(exist_ok=True)
     joblib.dump(final_model, MODEL_PATH)
 
@@ -118,10 +179,9 @@ def main() -> None:
     )
     print(
         "5-fold CV: "
-        f"accuracy={metrics['five_fold_cv']['accuracy_mean']:.3f}"
-        f"+/-{metrics['five_fold_cv']['accuracy_std']:.3f}, "
-        f"macro_f1={metrics['five_fold_cv']['macro_f1_mean']:.3f}"
-        f"+/-{metrics['five_fold_cv']['macro_f1_std']:.3f}"
+        f"accuracy={metrics['five_fold_cv']['accuracy']:.3f}, "
+        f"macro_f1={metrics['five_fold_cv']['macro_f1']:.3f}, "
+        f"spam_f1={metrics['five_fold_cv']['spam_f1']:.3f}"
     )
 
 

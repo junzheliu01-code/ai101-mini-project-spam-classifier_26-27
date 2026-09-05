@@ -7,7 +7,7 @@ import gradio as gr
 import joblib
 
 MODEL_PATH = Path(__file__).resolve().parent / "model" / "spam_classifier.joblib"
-SPAM_THRESHOLD = 0.35
+SPAM_THRESHOLD = 0.30
 LOAD_ERROR = object()
 
 
@@ -50,8 +50,9 @@ def classify_message(message: str):
             str(label): float(probability)
             for label, probability in zip(model.classes_, probabilities)
         }
+        spam_threshold = float(getattr(model, "spam_threshold_", SPAM_THRESHOLD))
         prediction = (
-            "spam" if probability_map.get("spam", 0.0) >= SPAM_THRESHOLD else "not_spam"
+            "spam" if probability_map.get("spam", 0.0) >= spam_threshold else "not_spam"
         )
     except Exception:
         return (

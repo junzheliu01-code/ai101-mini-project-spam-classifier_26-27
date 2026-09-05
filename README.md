@@ -1,5 +1,7 @@
 # Spam Classifier Mini-Project
 
+[![CI](https://github.com/junzheliu01-code/ai101-mini-project-spam-classifier_26-27/actions/workflows/ci.yml/badge.svg)](https://github.com/junzheliu01-code/ai101-mini-project-spam-classifier_26-27/actions/workflows/ci.yml)
+
 A local SMS spam classifier built with scikit-learn and Gradio. The repository keeps the original 200-message AI 101 exercise as a teaching baseline and adds a reproducible external-data benchmark for the runnable application.
 
 ## Project outcome
@@ -7,7 +9,7 @@ A local SMS spam classifier built with scikit-learn and Gradio. The repository k
 - Educational pipeline: word-level TF-IDF plus Logistic Regression, with C selected using only the training split.
 - Application pipeline: word unigrams and bigrams plus MultinomialNB, trained on the cleaned UCI SMS Spam Collection.
 - Gradio interface: returns SPAM or NOT SPAM together with both class probabilities.
-- Decision threshold: spam probability >= 0.35 is classified as SPAM. This favors a balanced macro-F1 while preserving useful spam recall.
+- Decision threshold: spam probability >= 0.30 is classified as SPAM. The threshold is selected on training-only out-of-fold predictions to favor macro-F1 while preserving useful spam recall.
 
 ## Evaluation results
 
@@ -30,10 +32,12 @@ The external corpus contains 5,574 English SMS messages. After removing exact du
 | Logistic Regression, unigrams | 97.2% | 0.932 | 0.817 | 0.949 |
 | Logistic Regression, word 1-2 grams | 95.8% | 0.890 | 0.672 | 0.892 |
 | Calibrated LinearSVC, word 1-2 grams | 97.7% | 0.948 | 0.924 | 0.962 |
-| **MultinomialNB, word 1-2 grams** | **98.5%** | **0.966** | **0.908** | **0.965** |
+| **MultinomialNB, word 1-2 grams** | **98.4%** | **0.962** | **0.908** | **0.966** |
 
 The exported application artifact uses the last row. The detailed reproducibility values are stored in reports/uci_external_model.json.
-The baseline rows use each estimator's default class decision; the exported application row uses the selected 0.35 spam-probability threshold.
+The baseline rows use each estimator's default class decision; the exported application row uses the selected 0.30 spam-probability threshold.
+
+The threshold is selected from candidate values between 0.20 and 0.60 using 5-fold out-of-fold predictions on the training split only. The fixed holdout is evaluated after that choice, and the candidate results are saved in reports/uci_external_model.json.
 
 ## Model flow
 
@@ -41,7 +45,7 @@ The baseline rows use each estimator's default class decision; the exported appl
 message
   -> lowercase TF-IDF word unigrams and bigrams
   -> MultinomialNB(alpha=0.1)
-  -> probability threshold 0.35
+  -> probability threshold 0.30
   -> SPAM / NOT SPAM + probabilities
 ~~~
 
@@ -109,7 +113,7 @@ The workflow in .github/workflows/ci.yml runs these checks automatically on push
 
 - Both corpora are English SMS datasets and may not represent current messaging behavior.
 - The external benchmark is a stronger validation step, but it is still not an independent deployment test set.
-- A probability threshold is a policy choice: lower thresholds catch more spam but can increase false positives.
+- The probability threshold is a policy choice: lower thresholds catch more spam but can increase false positives.
 - Useful next experiments are independently labeled hard negatives, an untouched external test set, character n-grams, a batch CSV mode, and a comparison with a calibrated LinearSVC or lightweight transformer.
 
 ## Project files
