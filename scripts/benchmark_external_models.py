@@ -14,24 +14,19 @@ from sklearn.metrics import (
     average_precision_score,
     classification_report,
     f1_score,
+    make_scorer,
     precision_score,
     recall_score,
     roc_auc_score,
-    make_scorer,
 )
 from sklearn.model_selection import StratifiedKFold, cross_validate, train_test_split
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.pipeline import Pipeline
 from sklearn.svm import LinearSVC
 
-
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_DATA_PATH = (
-    PROJECT_ROOT
-    / "data"
-    / "external"
-    / "uci_sms_spam"
-    / "SMSSpamCollection"
+    PROJECT_ROOT / "data" / "external" / "uci_sms_spam" / "SMSSpamCollection"
 )
 
 
@@ -175,13 +170,16 @@ def main() -> None:
             n_jobs=-1,
         )
 
+        spam_precision = precision_score(y_test, predictions, pos_label="spam")
+        spam_recall = recall_score(y_test, predictions, pos_label="spam")
+
         print(name)
         print(
             "  holdout: "
             f"accuracy={accuracy_score(y_test, predictions):.3f}, "
             f"macro_f1={f1_score(y_test, predictions, average='macro'):.3f}, "
-            f"spam_precision={precision_score(y_test, predictions, pos_label='spam'):.3f}, "
-            f"spam_recall={recall_score(y_test, predictions, pos_label='spam'):.3f}, "
+            f"spam_precision={spam_precision:.3f}, "
+            f"spam_recall={spam_recall:.3f}, "
             f"pr_auc={average_precision_score(binary_labels, probabilities):.3f}, "
             f"roc_auc={roc_auc_score(binary_labels, probabilities):.3f}"
         )

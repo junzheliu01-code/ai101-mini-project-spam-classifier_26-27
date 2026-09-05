@@ -82,6 +82,21 @@ python scripts/train_external_model.py
 
 The second command writes model/spam_classifier.joblib and reports/uci_external_model.json. The UCI corpus itself remains local and is not committed.
 
+## Run quality checks
+
+Install the development dependencies and run the same checks used by GitHub Actions:
+
+~~~powershell
+python -m pip install -r requirements-dev.txt
+python -m pytest
+python -m compileall -q app.py scripts tests
+python -m ruff check app.py scripts tests
+python -m ruff format --check app.py scripts tests
+python scripts/check_readme.py
+~~~
+
+The workflow in .github/workflows/ci.yml runs these checks automatically on pushes and pull requests to main.
+
 ## Example predictions
 
 | Message | Expected result |
@@ -106,10 +121,15 @@ The second command writes model/spam_classifier.joblib and reports/uci_external_
 | train_spam_classifier.ipynb | Reproducible teaching experiment |
 | scripts/benchmark_external_models.py | External model comparison |
 | scripts/train_external_model.py | External-data training and export |
+| scripts/check_readme.py | README documentation contract check |
+| tests/test_app.py | Inference and model-path tests |
+| .github/workflows/ci.yml | Automated Windows CI |
 | data/external/README.md | UCI download, attribution, and placement instructions |
 | model/spam_classifier.joblib | Exported application model |
 | reports/uci_external_model.json | Reproducible external metrics |
 | requirements.txt | Pinned runtime dependencies |
+| requirements-dev.txt | Test and lint dependencies |
+| pyproject.toml | Pytest and Ruff configuration |
 
 ## License
 

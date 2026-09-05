@@ -6,20 +6,18 @@ import json
 from pathlib import Path
 
 import joblib
+from benchmark_external_models import DEFAULT_DATA_PATH, build_models, load_dataset
 from sklearn.base import clone
 from sklearn.metrics import (
     accuracy_score,
     average_precision_score,
     f1_score,
+    make_scorer,
     precision_score,
     recall_score,
     roc_auc_score,
 )
 from sklearn.model_selection import StratifiedKFold, cross_validate, train_test_split
-from sklearn.metrics import make_scorer
-
-from benchmark_external_models import DEFAULT_DATA_PATH, build_models, load_dataset
-
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 MODEL_PATH = PROJECT_ROOT / "model" / "spam_classifier.joblib"
