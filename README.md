@@ -4,6 +4,8 @@
 
 A local SMS spam classifier built with scikit-learn and Gradio. The repository keeps the original 200-message AI 101 exercise as a teaching baseline and adds a reproducible external-data benchmark for the runnable application.
 
+The complete development history, evaluation decisions, interview evidence, and resume-ready wording are collected in [PROJECT_DEVELOPMENT_LOG.md](PROJECT_DEVELOPMENT_LOG.md).
+
 ## Project outcome
 
 - Educational pipeline: word-level TF-IDF plus Logistic Regression, with C selected using only the training split.
@@ -121,6 +123,7 @@ The workflow in .github/workflows/ci.yml runs these checks automatically on push
 | File | Purpose |
 | --- | --- |
 | app.py | Gradio interface, model loading, thresholded prediction |
+| PROJECT_DEVELOPMENT_LOG.md | Complete development history and resume evidence |
 | data.csv | Original 200-message teaching dataset |
 | train_spam_classifier.ipynb | Reproducible teaching experiment |
 | scripts/benchmark_external_models.py | External model comparison |
