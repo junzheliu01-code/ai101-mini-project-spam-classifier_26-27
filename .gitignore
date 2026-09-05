@@ -20,6 +20,9 @@ train_spam_classifier_solution.ipynb
 # Attendee-generated trained model artifact
 model/spam_classifier.joblib
 
+# External benchmark data downloaded from UCI
+data/external/uci_sms_spam/
+
 # Editor and operating-system files
 .vscode/
 .idea/

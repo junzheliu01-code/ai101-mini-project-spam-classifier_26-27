@@ -1,15 +1,18 @@
 """Local Gradio interface for the AI 101 Spam Classifier workshop."""
 
+from functools import lru_cache
 from pathlib import Path
 
 import gradio as gr
 import joblib
 
 
-MODEL_PATH = Path("model/spam_classifier.joblib")
+MODEL_PATH = Path(__file__).resolve().parent / "model" / "spam_classifier.joblib"
+SPAM_THRESHOLD = 0.35
 LOAD_ERROR = object()
 
 
+@lru_cache(maxsize=1)
 def load_model():
     """Return the trained pipeline, None when absent, or a load-error sentinel."""
     if not MODEL_PATH.exists():
@@ -30,7 +33,7 @@ def classify_message(message: str):
 
     if model is None:
         return (
-            "Model not found. Complete the training notebook first and place "
+            "Model not found. Run the documented training step and place "
             "spam_classifier.joblib inside the model/ folder.",
             {},
         )
@@ -38,18 +41,21 @@ def classify_message(message: str):
     if model is LOAD_ERROR:
         return (
             "We found your model, but couldn't load it. Check that it is named "
-            "spam_classifier.joblib, is inside model/, and was created using the "
-            "workshop notebook.",
+            "spam_classifier.joblib and is inside the model/ folder.",
             {},
         )
 
     try:
-        prediction = model.predict([message])[0]
         probabilities = model.predict_proba([message])[0]
         probability_map = {
             str(label): float(probability)
             for label, probability in zip(model.classes_, probabilities)
         }
+        prediction = (
+            "spam"
+            if probability_map.get("spam", 0.0) >= SPAM_THRESHOLD
+            else "not_spam"
+        )
     except Exception:
         return (
             "The model could not classify this message. Please re-export it from "

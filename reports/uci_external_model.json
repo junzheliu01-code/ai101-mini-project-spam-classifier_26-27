@@ -1,0 +1,29 @@
+{
+  "dataset": "UCI SMS Spam Collection",
+  "examples_after_cleaning": 5169,
+  "class_counts": {
+    "not_spam": 4516,
+    "spam": 653
+  },
+  "train_examples": 4135,
+  "test_examples": 1034,
+  "model": "TfidfVectorizer(word unigrams and bigrams) + MultinomialNB",
+  "alpha": 0.1,
+  "spam_threshold": 0.35,
+  "holdout": {
+    "accuracy": 0.9854932301740812,
+    "macro_f1": 0.9662234998203378,
+    "spam_precision": 0.9754098360655737,
+    "spam_recall": 0.9083969465648855,
+    "pr_auc": 0.974863341475704,
+    "roc_auc": 0.990286830159012
+  },
+  "five_fold_cv": {
+    "accuracy_mean": 0.9852975596420634,
+    "accuracy_std": 0.0028270882428142754,
+    "macro_f1_mean": 0.9650053420167477,
+    "macro_f1_std": 0.0071413092587297505,
+    "spam_f1_mean": 0.9383575382678666,
+    "spam_f1_std": 0.012693603958053955
+  }
+}
